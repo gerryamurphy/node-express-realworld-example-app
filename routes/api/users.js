@@ -40,6 +40,7 @@ router.put('/user', auth.required, function(req, res, next){
 });
 
 router.post('/users/login', function(req, res, next){
+  console.log("user login")
   if(!req.body.user.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
   }
@@ -60,9 +61,9 @@ router.post('/users/login', function(req, res, next){
   })(req, res, next);
 });
 
-router.post('/users', function(req, res, next){
+router.post('/register', function(req, res, next){
   var user = new User();
-
+ console.log(req.body.user);
   user.username = req.body.user.username;
   user.email = req.body.user.email;
   user.setPassword(req.body.user.password);
